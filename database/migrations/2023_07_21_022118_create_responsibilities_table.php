@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('responsibilities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->bigInteger('role_id')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
