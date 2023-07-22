@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Company extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +17,7 @@ class Company extends Model
      */
     protected $fillable = [
         'name',
-        'logo',
+        'logo'
     ];
 
     public function users()

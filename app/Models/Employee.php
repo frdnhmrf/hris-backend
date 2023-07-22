@@ -25,7 +25,7 @@ class Employee extends Model
         'team_id',
         'role_id',
         'is_verified',
-        'verified_at',
+        'verified_at'
     ];
 
     public function team()

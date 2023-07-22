@@ -17,7 +17,7 @@ class Role extends Model
      */
     protected $fillable = [
         'name',
-        'company_id',
+        'company_id'
     ];
 
     public function company()
@@ -32,6 +32,6 @@ class Role extends Model
 
     public function employees()
     {
-        return $this->hasMany(Employee::class);
+        $this->hasMany(Employee::class);
     }
 }

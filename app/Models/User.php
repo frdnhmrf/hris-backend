@@ -26,7 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -59,7 +59,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    
+
     public function companies()
     {
         return $this->belongsToMany(Company::class);

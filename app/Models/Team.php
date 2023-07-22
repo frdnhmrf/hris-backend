@@ -18,9 +18,9 @@ class Team extends Model
     protected $fillable = [
         'name',
         'icon',
-        'company_id',
+        'company_id'
     ];
-    
+
     public function company()
     {
         return $this->belongsTo(Company::class);
