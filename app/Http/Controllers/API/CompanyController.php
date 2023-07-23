@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
-    public function all(Request $request)
+    public function fetch(Request $request)
     {
         $id = $request->input('id');
         $companyQuery = Company::whereHas('users', function ($query) {
