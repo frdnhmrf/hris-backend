@@ -114,7 +114,7 @@ class TeamController extends Controller
             // Delete team
             $team->delete();
 
-            return ResponseFormatter::success($team, 'Team deleted');
+            return ResponseFormatter::success('Team deleted');
         } catch (Exception $error) {
             return ResponseFormatter::error($error->getMessage(), 500);
         }
