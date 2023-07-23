@@ -15,14 +15,14 @@ class ResponsibilityController extends Controller
     public function fetch(Request $request)
     {
         $id = $request->input('id');
-        $roleQuery = Responsibility::query();
+        $responsibilityQuery = Responsibility::query();
 
         // Get single data
         if ($id) {
-            $role = $roleQuery->find($id);
+            $responsibility = $responsibilityQuery->find($id);
 
-            if ($role) {
-                return ResponseFormatter::success($role, 'Responsibility found');
+            if ($responsibility) {
+                return ResponseFormatter::success($responsibility, 'Responsibility found');
             }
 
             return ResponseFormatter::error('Responsibility not found', 404);
@@ -32,14 +32,14 @@ class ResponsibilityController extends Controller
         $limit = $request->input('limit', 10);
 
         // Get multiple data
-        $roles = $roleQuery->where('company_id', $request->company_id);
+        $responsibilities = $responsibilityQuery->where('role_id', $request->role_id);
 
         if ($name) {
-            $roles->where('name', 'like', '%' . $name . '%');
+            $responsibilities->where('name', 'like', '%' . $name . '%');
         }
 
         return ResponseFormatter::success(
-            $roles->paginate($limit),
+            $responsibilities->paginate($limit),
             'Responsibilitys found'
         );
     }
@@ -47,19 +47,19 @@ class ResponsibilityController extends Controller
     public function create(CreateResponsibilityRequest $request)
     {
         try {
-            // Create role
-            $role = Responsibility::create(
+            // Create responsibility
+            $responsibility = Responsibility::create(
                 [
                     'name' => $request->name,
-                    'company_id' => $request->company_id
+                    'role_id' => $request->role_id
                 ]
             );
 
-            if (!$role) {
-                throw new Exception('Failed to create role');
+            if (!$responsibility) {
+                throw new Exception('Failed to create responsibility');
             }
 
-            return ResponseFormatter::success($role, 'Responsibility created');
+            return ResponseFormatter::success($responsibility, 'Responsibility created');
         } catch (Exception $error) {
             return ResponseFormatter::error($error->getMessage(), 500);
         }
@@ -68,19 +68,19 @@ class ResponsibilityController extends Controller
     public function update(UpdateResponsibilityRequest $request, $id)
     {
         try {
-            $role = Responsibility::find($id);
+            $responsibility = Responsibility::find($id);
 
-            if (!$role) {
-                throw new Exception('role not found');
+            if (!$responsibility) {
+                throw new Exception('responsibility not found');
             }
 
-            // Update role
-            $role->update([
+            // Update responsibility
+            $responsibility->update([
                 'name' => $request->name,
-                'team_id' => $request->team_id
+                'role_id' => $request->role_id
             ]);
 
-            return ResponseFormatter::success($role, 'Responsibility updated');
+            return ResponseFormatter::success($responsibility, 'Responsibility updated');
         } catch (Exception $error) {
             return ResponseFormatter::error($error->getMessage(), 500);
         }
@@ -89,16 +89,16 @@ class ResponsibilityController extends Controller
     public function destroy($id)
     {
         try {
-            // Get role
-            $role = Responsibility::find($id);
+            // Get responsibility
+            $responsibility = Responsibility::find($id);
 
-            // Check role
-            if (!$role) {
+            // Check responsibility
+            if (!$responsibility) {
                 return throw new Exception('Responsibility not found');
             }
 
-            // Delete role
-            $role->delete();
+            // Delete responsibility
+            $responsibility->delete();
 
             return ResponseFormatter::success('Responsibility deleted');
         } catch (Exception $error) {

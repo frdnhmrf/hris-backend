@@ -91,7 +91,7 @@ class TeamController extends Controller
             $team->update([
                 'name' => $request->name,
                 'icon' => $path,
-                'team_id' => $request->team_id
+                'company_id' => $request->company_id
             ]);
 
             return ResponseFormatter::success($team, 'Team updated');

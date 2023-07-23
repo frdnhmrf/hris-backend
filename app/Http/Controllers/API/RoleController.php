@@ -77,7 +77,7 @@ class RoleController extends Controller
             // Update role
             $role->update([
                 'name' => $request->name,
-                'team_id' => $request->team_id
+                'company_id' => $request->company_id
             ]);
 
             return ResponseFormatter::success($role, 'Role updated');
