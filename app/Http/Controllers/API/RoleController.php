@@ -20,7 +20,7 @@ class RoleController extends Controller
 
         // Get single data
         if ($id) {
-            $role = $roleQuery->with(['responsibilities'])->find($id);
+            $role = $roleQuery->with('responsibilities')->find($id);
 
             if ($role) {
                 return ResponseFormatter::success($role, 'Role found');
@@ -40,7 +40,7 @@ class RoleController extends Controller
         }
 
         if ($withResponsibility) {
-            $roles->with(['responsibilities']);
+            $roles->with('responsibilities');
         }
 
         return ResponseFormatter::success(
